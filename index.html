@@ -183,8 +183,8 @@
     <h2>🏗️ Las 5 Capas del Sistema</h2>
     <table>
       <tr><th>#</th><th>Capa</th><th>Qué hace</th><th>Herramienta</th></tr>
-      <tr><td>1</td><td><strong>Filtro NPS-First</strong></td><td>Separa promotores de detractores antes de pedir review</td><td>Klaviyo</td></tr>
-      <tr><td>2</td><td><strong>Secuencia Email (base)</strong></td><td>2 emails escalonados con timing óptimo — SMS como capa futura</td><td>Reviews.io + Klaviyo</td></tr>
+      <tr><td>1</td><td><strong>Filtro Satisfacción</strong></td><td>Filtra satisfechos e insatisfechos antes de pedir review — 1 clic, sin escala numérica</td><td>Klaviyo</td></tr>
+      <tr><td>2</td><td><strong>Secuencia Email (base)</strong></td><td>1 email de seguimiento para satisfechos (D+0) + recordatorio D+2 para no respondedores — SMS como capa futura</td><td>Klaviyo</td></tr>
       <tr><td>3</td><td><strong>Touchpoints On-Site</strong></td><td>Puntos de recolección en web post-compra</td><td>Reviews.io widgets</td></tr>
       <tr><td>4</td><td><strong>Touchpoints Offline</strong></td><td>QR en packaging + inserts físicos</td><td>Reviews.io QR</td></tr>
       <tr><td>5</td><td><strong>Incentivos Escalonados</strong></td><td>Recompensas crecientes por calidad de review</td><td>Reviews.io + Klaviyo coupons</td></tr>
@@ -230,15 +230,15 @@
       <div class="flow-arrow"></div>
 
       <div class="flow-step highlight" style="border-color: var(--orange); background: var(--orange-light);">
-        <span class="tag tag-nps">NPS FILTER</span>
-        <strong>Email NPS: "¿Recomendarías Matcha & CO? (0-10)"</strong>
-        <p style="font-size:.85rem;color:var(--gray)">Pregunta única. Click en número. Resultado segmenta automáticamente al cliente</p>
+        <span class="tag tag-nps">FILTRO SATISFACCIÓN</span><span class="tag tag-email" style="margin-left:.3rem">KLAVIYO</span>
+        <strong>Email de satisfacción: "¿Estás contento con tu pedido?" (1 clic)</strong>
+        <p style="font-size:.85rem;color:var(--gray)">Pregunta única. Click en 😊 o 😞. Respuesta segmenta automáticamente al cliente</p>
       </div>
       <div class="flow-arrow"></div>
 
       <!-- NODO CONDICIONAL PRINCIPAL -->
       <div style="background:#FEF9C3;border:2px dashed #CA8A04;border-radius:var(--radius);padding:.85rem 1.5rem;text-align:center;max-width:700px;width:100%">
-        <strong>🔀 ¿Respondió al NPS en 48h?</strong>
+        <strong>🔀 ¿Respondió al email de satisfacción?</strong>
       </div>
 
       <!-- GRID: 3fr SÍ | 2fr NO -->
@@ -247,23 +247,18 @@
         <!-- ═══════════ RAMA SÍ ═══════════ -->
         <div>
           <div style="text-align:center;font-size:.78rem;font-weight:700;color:var(--green);background:var(--green-light);border:1px solid var(--green-mid);border-radius:6px;padding:.35rem .75rem;margin-bottom:.65rem">
-            ✅ SÍ — segmenta por score NPS
+            ✅ SÍ — acción inmediata · segmenta por respuesta
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem">
             <div class="flow-step highlight" style="border-color:var(--green);background:var(--green-light)">
-              <span class="tag" style="background:var(--green)">9-10 PROMOTOR</span>
-              <strong>→ Reviews.io Flow</strong>
-              <p style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Secuencia de 2 emails para review pública. SMS como capa futura.</p>
-            </div>
-            <div class="flow-step" style="border-color:#7C3AED">
-              <span class="tag" style="background:#7C3AED">7-8 PASIVO</span>
-              <strong>→ Email suave</strong>
-              <p style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Feedback privado. Si no responde en 7 días → D+30 (Capa B).</p>
+              <span class="tag" style="background:var(--green)">😊 SATISFECHO</span><span style="background:white;color:var(--green);border:1.5px solid var(--green);font-size:.58rem;font-weight:700;padding:.1rem .38rem;border-radius:20px;margin-left:.3rem;white-space:nowrap">Klaviyo</span>
+              <strong>→ Review Request</strong>
+              <p style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Klaviyo envía 2 emails con Dynamic Link a Reviews.io.</p>
             </div>
             <div class="flow-step warn">
-              <span class="tag" style="background:var(--orange)">0-6 DETRACTOR</span>
+              <span class="tag" style="background:var(--orange)">😞 INSATISFECHO</span><span style="background:white;color:var(--orange);border:1.5px solid var(--orange);font-size:.58rem;font-weight:700;padding:.1rem .38rem;border-radius:20px;margin-left:.3rem;white-space:nowrap">Klaviyo</span>
               <strong>→ Soporte</strong>
-              <p style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Disculpa → soporte 24h → si resuelve → review D+7.</p>
+              <p style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Disculpa → soporte 24h. Sin review request.</p>
             </div>
           </div>
         </div>
@@ -271,14 +266,14 @@
         <!-- ═══════════ RAMA NO ═══════════ -->
         <div style="display:flex;flex-direction:column;align-items:stretch">
           <div style="text-align:center;font-size:.78rem;font-weight:700;color:var(--gray);background:#f4f4f4;border:1px solid #d1d5db;border-radius:6px;padding:.35rem .75rem;margin-bottom:.65rem">
-            ⏸ NO — sin respuesta
+            ⏸ NO — espera 48h · sin respuesta
           </div>
 
           <!-- D+2 card -->
           <div class="flow-step" style="border-color:#9CA3AF;background:#F9FAFB">
-            <span class="tag" style="background:#6B7280">D+2</span>
+            <span class="tag" style="background:#6B7280">D+2</span><span style="background:white;color:#7C3AED;border:1.5px solid #7C3AED;font-size:.58rem;font-weight:700;padding:.1rem .38rem;border-radius:20px;margin-left:.3rem;white-space:nowrap">Klaviyo</span>
             <strong>Recordatorio leve</strong>
-            <p style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Email texto plano. Misma pregunta NPS, sin presión añadida.</p>
+            <p style="font-size:.78rem;color:var(--gray);margin-top:.3rem">Email texto plano. Misma pregunta de satisfacción (😊 / 😞), sin presión añadida.</p>
           </div>
 
           <!-- Flecha interna -->
@@ -297,17 +292,56 @@
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem">
             <div style="background:var(--green-light);border:1.5px solid var(--green-mid);border-radius:var(--radius);padding:.65rem .8rem">
               <div style="font-size:.72rem;font-weight:700;color:var(--green);margin-bottom:.25rem">✅ SÍ</div>
-              <strong style="font-size:.8rem">Segmenta por score</strong>
+              <strong style="font-size:.8rem">Segmenta por respuesta</strong>
               <p style="font-size:.72rem;color:var(--gray);margin:.2rem 0 0">← Igual que rama principal</p>
             </div>
             <div style="background:#F9FAFB;border:1.5px solid #9CA3AF;border-radius:var(--radius);padding:.65rem .8rem">
               <div style="font-size:.72rem;font-weight:700;color:#6B7280;margin-bottom:.25rem">❌ NO</div>
               <strong style="font-size:.8rem">D+30 (Capa B)</strong>
-              <p style="font-size:.72rem;color:var(--gray);margin:.2rem 0 0">Red final. Sin más NPS.</p>
+              <p style="font-size:.72rem;color:var(--gray);margin:.2rem 0 0">Red final. Sin más pregunta.</p>
             </div>
           </div>
         </div>
 
+      </div>
+
+      <!-- SECUENCIA DE EMAILS POST-NPS -->
+      <div style="width:100%;max-width:1000px;margin-top:1.25rem">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem">
+          <div style="flex:1;height:1px;background:var(--green-mid)"></div>
+          <div style="font-size:.72rem;color:var(--accent);font-weight:600;white-space:nowrap">📧 Secuencia de emails post-satisfacción</div>
+          <div style="flex:1;height:1px;background:var(--green-mid)"></div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+
+          <!-- Satisfecho -->
+          <div style="border:1.5px solid var(--green-mid);border-radius:var(--radius);overflow:hidden">
+            <div style="background:var(--green);color:white;font-size:.75rem;font-weight:700;padding:.4rem .75rem;display:flex;align-items:center;gap:.45rem">😊 SATISFECHO <span style="background:rgba(255,255,255,0.22);font-size:.6rem;padding:.1rem .35rem;border-radius:10px;font-weight:600">Klaviyo</span></div>
+            <div style="padding:.65rem .75rem;display:flex;flex-direction:column;gap:.5rem">
+              <div style="display:flex;gap:.6rem;align-items:start">
+                <span style="background:var(--accent);color:white;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:20px;white-space:nowrap;flex-shrink:0">D+0</span>
+                <div style="font-size:.78rem"><strong>Email #1</strong> — Fallback (si no dejó review en las últimas 24h)<br><span style="color:var(--gray);font-size:.72rem">Social proof + incentivo (15% flat) + CTA → Dynamic Link</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Insatisfecho -->
+          <div style="border:1.5px solid var(--orange);border-radius:var(--radius);overflow:hidden">
+            <div style="background:var(--orange);color:white;font-size:.75rem;font-weight:700;padding:.4rem .75rem;display:flex;align-items:center;gap:.45rem">😞 INSATISFECHO <span style="background:rgba(255,255,255,0.22);font-size:.6rem;padding:.1rem .35rem;border-radius:10px;font-weight:600">Klaviyo</span></div>
+            <div style="padding:.65rem .75rem;display:flex;flex-direction:column;gap:.5rem">
+              <div style="display:flex;gap:.6rem;align-items:start">
+                <span style="background:var(--accent);color:white;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:20px;white-space:nowrap;flex-shrink:0">D+0</span>
+                <div style="font-size:.78rem"><strong>Email disculpa</strong> + soporte 24h<br><span style="color:var(--gray);font-size:.72rem">Prioridad: resolver la experiencia.</span></div>
+              </div>
+              <div style="display:flex;gap:.6rem;align-items:start">
+                <span style="background:#6B7280;color:white;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:20px;white-space:nowrap;flex-shrink:0">FIN</span>
+                <div style="font-size:.78rem;color:var(--gray)">Sin más contacto. Prioridad: no empeorar la experiencia.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <!-- Separador de convergencia hacia el cierre del flow -->
@@ -319,9 +353,9 @@
       <div class="flow-arrow"></div>
 
       <div class="flow-step highlight">
-        <span class="tag tag-email">REVIEWS.IO</span>
-        <strong>Review recibida → Evento a Klaviyo</strong>
-        <p style="font-size:.85rem;color:var(--gray);margin-top:.3rem">Auto-envío de cupón de agradecimiento (5-20% según tipo de review)</p>
+        <span class="tag tag-email">KLAVIYO</span>
+        <strong>Review recibida → Cupón automático</strong>
+        <p style="font-size:.85rem;color:var(--gray);margin-top:.3rem">Reviews.io dispara <code>ReviewsIOProductReview</code> a Klaviyo → flow envía email con cupón 15% flat (Fase 1) · escalonado 5-20% en Fase 2</p>
       </div>
       <div class="flow-arrow"></div>
 
@@ -331,10 +365,10 @@
     </div>
 
     <div class="callout" style="margin-top: 1rem;">
-      <strong>Nota ética:</strong> Esto NO es "review gating" (prohibido por Google). No se impide a nadie dejar review. Se prioriza la resolución del problema primero para detractores, y se pide review después de que la experiencia completa esté resuelta.
+      <strong>Nota ética:</strong> Esto NO es "review gating" (prohibido por Google). No se impide a nadie dejar review. Se prioriza la resolución del problema primero para insatisfechos, y se pide review después de que la experiencia completa esté resuelta.
     </div>
     <div class="callout warn" style="margin-top:.75rem">
-      <strong>Supresión de solicitudes repetidas:</strong> Excluir del flow a clientes que ya tienen review publicada del mismo producto, o que han recibido más de 2 solicitudes en los últimos 90 días. Configurar en Klaviyo como condición de exclusión al inicio del flow — evita que clientes con múltiples compras reciban solicitudes en bucle.
+      <strong>Supresión de solicitudes repetidas:</strong> Gestionado mediante el re-entry del flow en Klaviyo — los clientes no pueden volver a entrar al flow hasta pasados 90 días desde su última entrada, y solo si realizan un nuevo pedido (<code>Fulfilled Order</code>). Evita solicitudes en bucle sin necesidad de filtros adicionales al inicio del flow.
     </div>
   </div>
 </div>
@@ -343,24 +377,19 @@
 <div class="panel" id="sequence">
   <div class="hero">
     <h1>Secuencia de Email</h1>
-    <p>2 emails escalonados — solo para promotores (NPS 9-10) · SMS: capa futura cuando el canal esté habilitado</p>
+    <p>Email de seguimiento para rama Satisfecha + email de soporte para Insatisfechos + recordatorio para no respondedores · SMS: capa futura</p>
   </div>
 
   <div class="stats">
     <div class="stat">
       <div class="stat-value">D+0</div>
       <div class="stat-label">Email #1 — solicitud</div>
-      <div class="stat-sub">Tras NPS 9-10</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">D+5</div>
-      <div class="stat-label">Email #2 — incentivo</div>
-      <div class="stat-sub">Social proof + descuento</div>
+      <div class="stat-sub">Tras respuesta 😊 · social proof + incentivo</div>
     </div>
     <div class="stat">
       <div class="stat-value">~35%</div>
       <div class="stat-label">Open rate objetivo</div>
-      <div class="stat-sub">Segmento promotores</div>
+      <div class="stat-sub">Segmento satisfechos</div>
     </div>
     <div class="stat">
       <div class="stat-value">&gt;8%</div>
@@ -370,82 +399,133 @@
   </div>
 
   <div class="card">
-    <h2>📩 El email NPS — cómo implementarlo</h2>
-    <p style="color:var(--gray);font-size:.9rem;margin-bottom:1.25rem">Un único email con una pregunta. El usuario responde con un clic — sin formularios, sin salir a ningún enlace externo. Klaviyo captura la puntuación automáticamente y segmenta el perfil.</p>
+    <h2 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">📩 El email de satisfacción — cómo implementarlo <span style="background:#7C3AED;color:white;font-size:.65rem;font-weight:700;padding:.2rem .55rem;border-radius:20px;letter-spacing:.01em">Klaviyo Flow</span></h2>
+    <p style="color:var(--gray);font-size:.9rem;margin-bottom:1.25rem">Un único email con una pregunta binaria. El usuario responde con un clic. Los dos botones funcionan de forma distinta: 😊 lleva directamente al formulario de Reviews.io · 😞 registra la insatisfacción en Klaviyo y redirige a soporte.</p>
 
     <h3>¿Qué ve el usuario?</h3>
     <div style="background:var(--gray-light);padding:1.25rem;border-radius:var(--radius);margin:.5rem 0 1rem;font-size:.9rem">
-      <strong>Subject:</strong> ¿Nos recomendarías a alguien? (1 clic)<br>
+      <strong>Subject:</strong> ¿Estás contento con tu pedido? (1 clic)<br>
       <strong>Preview:</strong> Solo una pregunta — sin formularios<br><br>
       <em>Hola [Nombre],</em><br><br>
-      <em>¿Con qué probabilidad recomendarías Matcha & CO a alguien que conoces?</em><br><br>
-      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin:.75rem 0">
-        <span style="background:var(--orange);color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">0</span>
-        <span style="background:var(--orange);color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">1</span>
-        <span style="background:var(--orange);color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">2</span>
-        <span style="background:#c2a008;color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">3</span>
-        <span style="background:#c2a008;color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">4</span>
-        <span style="background:#c2a008;color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">5</span>
-        <span style="background:#c2a008;color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">6</span>
-        <span style="background:var(--accent);color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">7</span>
-        <span style="background:var(--accent);color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">8</span>
-        <span style="background:var(--green);color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">9</span>
-        <span style="background:var(--green);color:white;padding:.3rem .55rem;border-radius:6px;font-weight:700;font-size:.85rem">10</span>
+      <em>Ya has tenido tiempo de probar tu [Producto]. ¿Qué tal ha ido?</em><br><br>
+      <div style="display:flex;gap:2rem;margin:1rem 0;justify-content:center">
+        <div style="text-align:center">
+          <span style="background:var(--green);color:white;padding:.6rem 1.4rem;border-radius:8px;font-size:1.8rem;display:inline-block;cursor:pointer">😊</span>
+          <div style="font-size:.78rem;color:var(--gray);margin-top:.4rem">Contento/a</div>
+          <div style="font-size:.7rem;color:var(--accent);margin-top:.15rem;font-weight:600">→ Formulario de review</div>
+        </div>
+        <div style="text-align:center">
+          <span style="background:var(--orange);color:white;padding:.6rem 1.4rem;border-radius:8px;font-size:1.8rem;display:inline-block;cursor:pointer">😞</span>
+          <div style="font-size:.78rem;color:var(--gray);margin-top:.4rem">No del todo</div>
+          <div style="font-size:.7rem;color:var(--orange);margin-top:.15rem;font-weight:600">→ Soporte</div>
+        </div>
       </div>
-      <em style="font-size:.82rem;color:var(--gray)">0 = Nada probable · 10 = Totalmente seguro</em>
+      <em style="font-size:.82rem;color:var(--gray)">1 clic · sin formularios intermedios</em>
     </div>
 
     <h3>Cómo funciona técnicamente</h3>
     <table style="margin:.5rem 0 1rem">
-      <tr><th>Elemento</th><th>Detalle</th></tr>
-      <tr><td><strong>Herramienta</strong></td><td>Klaviyo — tag nativo <code>update_property_link</code>, disponible en todos los planes</td></tr>
-      <tr><td><strong>Cada número</strong></td><td>Un botón con link especial de Klaviyo que captura el valor (0-10) como custom property en el perfil del contacto</td></tr>
-      <tr><td><strong>Fricción</strong></td><td>1 clic → Klaviyo captura la puntuación. Sin formulario, sin página externa obligatoria</td></tr>
-      <tr><td><strong>Página post-clic</strong></td><td>Shopify page propia mínima: "Gracias, recibimos tu puntuación" — tú controlas el redirect</td></tr>
-      <tr><td><strong>Custom property</strong></td><td><code>NPS_Rating</code> = valor numérico (0-10), escrito en el perfil al instante del clic</td></tr>
-      <tr><td><strong>Segmentación</strong></td><td>Klaviyo crea segmentos automáticos: NPS 9-10 → Promotores / 7-8 → Pasivos / 0-6 → Detractores</td></tr>
+      <tr><th>Elemento</th><th>😊 Contento/a</th><th>😞 No del todo</th></tr>
+      <tr><td><strong>Tipo de link</strong></td><td>Enlace HTML normal con URL dinámica (Reviews.io Dynamic Link)</td><td>Tag <code>update_property_link</code> de Klaviyo</td></tr>
+      <tr><td><strong>Destino</strong></td><td>Formulario de Reviews.io pre-cargado con el producto comprado, email y order_id — review marcada como "verified purchase"</td><td>Shopify page "Gracias por avisarnos" · Klaviyo registra <code>satisfaction_response = "negative"</code></td></tr>
+      <tr><td><strong>Cómo sabe el producto</strong></td><td>La URL incluye todos los SKUs del pedido mediante un loop Liquid que Klaviyo inyecta al momento del envío: <code>{% for item in event.extra.line_items %}{{ item.product.variant.sku | urlencode }}%3B{% endfor %}</code> — funciona para pedidos con uno o varios productos</td><td>No aplica</td></tr>
+      <tr><td><strong>Custom property</strong></td><td><code>satisfaction_response = "positive"</code> — escrita por el flow de Klaviyo al detectar el clic (acción "Update Profile")</td><td><code>satisfaction_response = "negative"</code> — escrita al instante del clic por el tag</td></tr>
+      <tr><td><strong>Split del flow</strong></td><td>Condición: "Has clicked email where URL contains reviews.io"</td><td>Condición: <code>satisfaction_response = "negative"</code></td></tr>
     </table>
 
     <div class="callout">
-      <strong>Compatibilidad total:</strong> Funciona en todos los clientes de email — Outlook, Gmail, Apple Mail, Samsung. No requiere AMP. Al ser links estáticos, el comportamiento es idéntico en cualquier cliente.
+      <strong>Compatibilidad total:</strong> Funciona en todos los clientes de email — Outlook, Gmail, Apple Mail, Samsung. No requiere AMP. Los links son estáticos una vez enviado el email.
     </div>
     <div class="callout warn" style="margin-top:.75rem">
-      <strong>Solo una pregunta:</strong> El email NPS no incluye campo de texto ni preguntas de seguimiento. Si quieres un comentario cualitativo, se puede añadir de forma opcional en la página de confirmación post-clic — sin bloquear el flujo principal.
+      <strong>Solo una pregunta:</strong> El email no incluye campo de texto ni preguntas adicionales. El SKU que aparece en la URL del 😊 lo inyecta Klaviyo desde los datos del evento <code>Fulfilled Order</code> al momento del envío — no es dinámico en el clic, es estático en el email.
     </div>
   </div>
 
   <div class="card">
-    <h2>📅 Timeline de la secuencia (post NPS-filter)</h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-day">Día +0 (tras NPS 9-10)</div>
-        <div class="tl-title"><span class="tag tag-email">EMAIL #1</span> Solicitud principal</div>
-        <div class="tl-desc">Rating clickeable in-email + link directo a review. Subject: "¿Qué te ha parecido tu matcha? (60 seg)"</div>
+    <h2>📅 Secuencia por rama</h2>
+    <p style="color:var(--gray);font-size:.88rem;margin-bottom:1.25rem">D+0 en rama Satisfechos es relativo al momento del clic en 😊. <strong>Email #1 es condicional:</strong> solo se envía si el cliente clicó 😊 pero no publicó review en las 24h siguientes. Cada rama tiene su propia herramienta de envío.</p>
+
+    <!-- ── SATISFECHO ── -->
+    <div style="border:1.5px solid var(--green-mid);border-radius:var(--radius);overflow:hidden;margin-bottom:1.25rem">
+      <div style="background:var(--green);color:white;padding:.5rem 1rem;display:flex;align-items:center;gap:.6rem">
+        <strong style="font-size:.8rem">😊 SATISFECHO</strong>
+        <span style="background:rgba(255,255,255,0.22);font-size:.65rem;font-weight:700;padding:.12rem .45rem;border-radius:20px">Klaviyo</span>
       </div>
-      <div class="tl-item">
-        <div class="tl-day">Día +5</div>
-        <div class="tl-title"><span class="tag tag-email">EMAIL #2</span> Social proof + incentivo</div>
-        <div class="tl-desc">Subject: "{{reviews_count}} personas ya compartieron su experiencia" + 10% descuento por review, 15% si incluye foto</div>
+      <div style="padding:1rem">
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:1rem;margin-bottom:.85rem">
+          <div style="text-align:center;padding-top:.2rem">
+            <span style="background:var(--accent);color:white;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:20px">D+0</span>
+            <div style="font-size:.68rem;color:var(--gray);margin-top:.3rem;font-weight:600">Email #1</div>
+          </div>
+          <div>
+            <strong style="font-size:.88rem">Fallback — si no completó la review en las 24h tras clicar 😊</strong>
+            <div class="callout" style="font-size:.78rem;margin:.4rem 0 .5rem;padding:.6rem .85rem"><strong>⚠️ Condicional:</strong> Este email solo se envía si el cliente clicó 😊 (y fue a Reviews.io) pero no publicó review en las 24h siguientes. Condición en el flow: "Has NOT performed <code>ReviewsIOProductReview</code> in the last 24 hours". Solo excluye a quien revisó en la ventana de 24h tras clicar 😊 — no afecta a revisores históricos ni a reviews de otros productos anteriores.</div>
+            <div style="background:var(--gray-light);padding:.85rem;border-radius:8px;font-size:.83rem;line-height:1.6;margin:.4rem 0 .5rem">
+              <strong>Subject:</strong> ¿Qué te ha parecido tu matcha?<br>
+              <strong>Preview:</strong> {{reviews_count}} personas ya lo compartieron — tú aún no<br><br>
+              <em>Hola [Nombre],<br><br>
+              Ya llevas unos días con tu [Producto]. ¿Qué tal ha ido?<br><br>
+              Más de <strong>{{reviews_count}}</strong> amantes del matcha ya han compartido su experiencia con Matcha &amp; CO.<br><br>
+              Como agradecimiento, te regalamos un <strong>15% de descuento</strong> en tu próxima compra por compartir tu opinión.<br><br>
+              <strong>[Compartir mi experiencia →]</strong> &nbsp;<span style="font-size:.75rem;color:var(--gray)">(botón único · Dynamic Link Reviews.io)</span></em>
+            </div>
+            <div class="callout" style="font-size:.78rem;margin:0"><strong>CTA único:</strong> Un solo botón con el Dynamic Link de Reviews.io — pre-carga email, order_id y SKUs del pedido. No usar imágenes de estrella en email: el Dynamic Link no soporta pre-selección de rating y fallan en Outlook.</div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- ── INSATISFECHO ── -->
+    <div style="border:1.5px solid var(--orange);border-radius:var(--radius);overflow:hidden">
+      <div style="background:var(--orange);color:white;padding:.5rem 1rem;display:flex;align-items:center;gap:.6rem">
+        <strong style="font-size:.8rem">😞 INSATISFECHO</strong>
+        <span style="background:rgba(255,255,255,0.22);font-size:.65rem;font-weight:700;padding:.12rem .45rem;border-radius:20px">Klaviyo Flow</span>
+      </div>
+      <div style="padding:1rem">
+        <div style="display:grid;grid-template-columns:80px 1fr;gap:1rem;margin-bottom:.85rem">
+          <div style="text-align:center;padding-top:.2rem">
+            <span style="background:var(--accent);color:white;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:20px">D+0</span>
+            <div style="font-size:.68rem;color:var(--gray);margin-top:.3rem;font-weight:600">Email único</div>
+          </div>
+          <div>
+            <strong style="font-size:.88rem">Email disculpa + soporte prioritario</strong>
+            <div style="background:var(--gray-light);padding:.85rem;border-radius:8px;font-size:.83rem;line-height:1.6;margin:.4rem 0 .5rem">
+              <strong>Subject:</strong> Lo sentimos — queremos solucionarlo<br>
+              <strong>Preview:</strong> Tienes soporte prioritario en las próximas 24h<br><br>
+              <em>Hola [Nombre],<br><br>
+              Vemos que tu experiencia con Matcha &amp; CO no ha sido la que esperabas. Lo sentimos.<br><br>
+              Nuestro equipo está disponible para ayudarte en las próximas 24 horas. No dejes que esto quede sin resolver.<br><br>
+              <strong>[Botón: Hablar con soporte]</strong></em>
+            </div>
+            <div class="callout warn" style="font-size:.78rem;margin:0"><strong>Sin review request:</strong> No se pide review a detractores en ningún momento del flujo automatizado. Si el problema se resuelve, el seguimiento es manual.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:.6rem;align-items:center">
+          <span style="background:#6B7280;color:white;font-size:.65rem;font-weight:700;padding:.15rem .45rem;border-radius:20px;white-space:nowrap">FIN</span>
+          <div style="font-size:.8rem;color:var(--gray)">Sin más contacto automatizado. Prioridad: no empeorar la experiencia.</div>
+        </div>
+      </div>
+    </div>
+
     <div class="callout warn" style="margin-top:1rem">
       <strong>📱 SMS — canal futuro (Capa G):</strong> Una vez habilitado el canal (consentimiento GDPR marketing explícito + base de teléfonos validada), se pueden añadir 2 touchpoints SMS en D+2 y D+8. Reviews.io SMS Quick Invites funcionan como sistema separado al Flow builder — <span onclick="showPanel('additions');window.scrollTo(0,0)" style="color:var(--orange);font-weight:700;text-decoration:underline;cursor:pointer">ver Capa G en Capas Complementarias →</span>
     </div>
   </div>
 
   <div class="card">
-    <h2>💬 Recordatorio D+2 — para quien no respondió al NPS</h2>
-    <p style="color:var(--gray);font-size:.9rem;margin-bottom:1rem">Si el cliente no hizo clic en ningún número del email NPS en 48h, se envía este recordatorio. No es un segundo email de marketing — es un toque mínimo que da una segunda oportunidad sin añadir presión.</p>
+    <h2 style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap">💬 Recordatorio D+2 — para quien no respondió al email de satisfacción <span style="background:#7C3AED;color:white;font-size:.65rem;font-weight:700;padding:.2rem .55rem;border-radius:20px;letter-spacing:.01em">Klaviyo Flow</span></h2>
+    <p style="color:var(--gray);font-size:.9rem;margin-bottom:1rem">Si el cliente no hizo clic en ninguna cara (😊 / 😞) en 48h, se envía este recordatorio. No es un segundo email de marketing — es un toque mínimo que da una segunda oportunidad sin añadir presión.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
       <div>
         <h3>Principios de diseño</h3>
         <table>
           <tr><th>Elemento</th><th>Decisión</th></tr>
           <tr><td><strong>Formato</strong></td><td>Texto plano — sin imágenes, sin logo, sin diseño HTML. Parece un email de persona, no de marca.</td></tr>
-          <tr><td><strong>Longitud</strong></td><td>3 líneas máximo. Subject + 1 frase + escala 0-10.</td></tr>
-          <tr><td><strong>Tono</strong></td><td>Casual, sin presión. No menciona reviews ni descuentos. Solo repite la pregunta NPS.</td></tr>
-          <tr><td><strong>Mecánica</strong></td><td>Mismos links de Klaviyo Update Property Link — si hacen clic, entran al flow NPS normal.</td></tr>
-          <tr><td><strong>Si sigue sin respuesta</strong></td><td>Sin más contacto hasta D+30 (Capa B). Nunca 3 intentos de NPS.</td></tr>
+          <tr><td><strong>Longitud</strong></td><td>3 líneas máximo. Subject + 1 frase + las 2 caras.</td></tr>
+          <tr><td><strong>Tono</strong></td><td>Casual, sin presión. No menciona reviews ni descuentos. Solo repite la pregunta de satisfacción (😊 / 😞).</td></tr>
+          <tr><td><strong>Herramienta</strong></td><td>Klaviyo — flow automático con split condicional por <code>satisfaction_response</code></td></tr>
+          <tr><td><strong>Mecánica</strong></td><td>Mismos links de Klaviyo Update Property Link — si hacen clic, entran al flow normal (rama Satisfecho o Insatisfecho).</td></tr>
+          <tr><td><strong>Si sigue sin respuesta</strong></td><td>Sin más contacto hasta D+30 (Capa B). Nunca 3 intentos.</td></tr>
         </table>
       </div>
       <div>
@@ -454,19 +534,16 @@
           <strong>Subject:</strong> ¿Todo bien con tu matcha?<br><br>
           <em>Hola [Nombre],</em><br><br>
           <em>El otro día te preguntamos qué te parece. Si todavía no has tenido un momento:</em><br><br>
-          <span style="font-size:.82rem">¿Con qué probabilidad recomendarías Matcha & CO? (0 = nada · 10 = seguro)</span><br>
-          <div style="display:flex;gap:.3rem;flex-wrap:wrap;margin:.5rem 0">
-            <span style="background:var(--orange);color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">0</span>
-            <span style="background:var(--orange);color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">1</span>
-            <span style="background:var(--orange);color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">2</span>
-            <span style="background:#c2a008;color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">3</span>
-            <span style="background:#c2a008;color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">4</span>
-            <span style="background:#c2a008;color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">5</span>
-            <span style="background:#c2a008;color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">6</span>
-            <span style="background:var(--accent);color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">7</span>
-            <span style="background:var(--accent);color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">8</span>
-            <span style="background:var(--green);color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">9</span>
-            <span style="background:var(--green);color:white;padding:.2rem .45rem;border-radius:5px;font-weight:700;font-size:.8rem">10</span>
+          <span style="font-size:.82rem">¿Estás contento/a con tu pedido?</span><br>
+          <div style="display:flex;gap:1.5rem;margin:.75rem 0">
+            <div style="text-align:center">
+              <span style="background:var(--green);color:white;padding:.4rem 1rem;border-radius:6px;font-size:1.4rem;display:inline-block">😊</span>
+              <div style="font-size:.72rem;color:var(--gray);margin-top:.25rem">Sí, contento/a</div>
+            </div>
+            <div style="text-align:center">
+              <span style="background:var(--orange);color:white;padding:.4rem 1rem;border-radius:6px;font-size:1.4rem;display:inline-block">😞</span>
+              <div style="font-size:.72rem;color:var(--gray);margin-top:.25rem">No del todo</div>
+            </div>
           </div>
           <em style="font-size:.8rem;color:var(--gray)">— Equipo Matcha & CO</em>
         </div>
@@ -474,41 +551,14 @@
     </div>
   </div>
 
-  <div class="card">
-    <h2>✍️ Copy de cada touchpoint</h2>
-    <h3><span class="tag tag-email">EMAIL #1</span> Solicitud principal</h3>
-    <div style="background:var(--gray-light); padding:1rem; border-radius:8px; font-size:.9rem; margin:.5rem 0 .5rem">
-      <strong>Subject:</strong> ¿Qué te ha parecido tu matcha? (60 seg)<br>
-      <strong>Preview:</strong> Tu opinión ayuda a otros amantes del matcha<br><br>
-      <em>Hola [Nombre],</em><br><br>
-      <em>Ya has tenido tiempo de probar tu [Producto]. Nos encantaría saber qué te ha parecido.</em><br><br>
-      <em>¿Cómo valorarías tu experiencia?</em><br>
-      <strong>⭐⭐⭐⭐⭐ [5 imágenes de estrella, cada una con link único al form de review pre-cargado]</strong><br><br>
-      <em>Solo te llevará 60 segundos. Tu experiencia ayuda a otros a descubrir el matcha de verdad.</em>
-    </div>
-    <div class="callout warn" style="margin-bottom:1rem;font-size:.82rem">
-      <strong>Implementación rating in-email:</strong> No es AMP interactivo (soporte limitado — no funciona en Outlook ~25% de usuarios). Implementar como 5 imágenes de estrella, cada una con un link distinto que pre-carga el form de Reviews.io con ese rating seleccionado. Reduce fricción sin depender de soporte AMP.
-    </div>
-
-    <h3><span class="tag tag-email">EMAIL #2</span> Social proof + incentivo</h3>
-    <div style="background:var(--gray-light); padding:1rem; border-radius:8px; font-size:.9rem; margin:.5rem 0">
-      <strong>Subject:</strong> {{reviews_count}} personas ya compartieron su experiencia<br>
-      <strong>Preview:</strong> Comparte la tuya y obtén un 10% en tu próxima compra<br><br>
-      <em>Hola [Nombre],</em><br><br>
-      <em>Más de <strong>{{reviews_count}}</strong> amantes del matcha ya han compartido su experiencia con Matcha & CO. ¿Te unes?</em><br><br>
-      <em>Como agradecimiento, te regalamos un <strong>10% de descuento</strong> en tu próxima compra por compartir tu opinión.</em><br><br>
-      <strong>📸 Bonus: Si añades una foto, duplicamos el descuento al 15%.</strong>
-    </div>
-  </div>
-
   <div class="callout">
     <strong>Multi-mercado:</strong> Cada email/SMS localizado al idioma del mercado (ES, FR, DE, EN, PT). Reviews.io permite delays diferentes por ubicación geográfica — ajustar según tiempos de entrega típicos por país.
   </div>
   <div class="callout warn" style="margin-top:.75rem">
-    <strong>⚠️ Timing:</strong> Los días D+0, D+2, D+5 y D+8 son relativos al momento de respuesta al NPS — no a la entrega del pedido. El NPS llega a D+5-7 post-entrega; la secuencia completa termina ~D+13-15 desde entrega. Configurar en Reviews.io como delays desde el evento "NPS respondido con score 9-10".
+    <strong>⚠️ Timing — dos referencias distintas:</strong> <strong>Email #1 (D+0)</strong> es relativo al clic en 😊 — se envía 24h después si no hay review publicada. <strong>Recordatorio D+2</strong> es relativo al envío del email de satisfacción — se envía si el cliente no respondió (ni 😊 ni 😞) en 48h. El email de satisfacción llega a D+5-7 post-entrega; la secuencia completa termina ~D+9-12 desde entrega. Configurar ambos en Klaviyo como delays desde sus respectivos eventos de referencia.
   </div>
   <div class="callout warn" style="margin-top:.75rem">
-    <strong>⚠️ "{{reviews_count}}" es variable dinámica:</strong> El número de reviews en Email #2 debe conectarse al contador real de Reviews.io — no usar un número hardcoded. Actualizar mensualmente como mínimo o conectar vía API/property de Klaviyo.
+    <strong>⚠️ Número de reviews en Email #1 — cómo gestionarlo:</strong> Klaviyo no tiene una variable nativa conectada al contador de Reviews.io. La opción más simple y recomendada: <strong>escribir el número redondeado directamente en el template</strong> ("Más de 4.000 amantes del matcha...") y actualizarlo manualmente cada trimestre editando el template en Klaviyo — sin complejidad técnica y funcionalmente equivalente. Si se quiere automatizar: crear una custom property global en Klaviyo y actualizarla via API de Reviews.io, pero no es necesario en Fase 1.
   </div>
 </div>
 
@@ -722,69 +772,104 @@
     </div>
     <div class="phase-content active" id="phase1">
       <table>
-        <tr><th>Acciones Clave</th><th>Tipo</th><th>Orden</th></tr>
+        <tr><th>Acciones Clave</th><th>ID</th><th>Orden</th></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f1r0')">
-          <td>Diseñar los emails del sistema: NPS + review request <span class="expand-icon" id="icon-f1r0">▼</span></td>
-          <td style="color:var(--accent)">+ Nuevo</td><td><strong>1</strong></td>
+          <td>Crear los emails del sistema: copy + plantillas en Klaviyo y Reviews.io (ES + FR) <span class="expand-icon" id="icon-f1r0">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.1</td><td><strong>1</strong></td>
         </tr>
         <tr class="row-expand" id="f1r0"><td colspan="3"><div class="expand-content">
-          <p style="margin-bottom:.75rem;color:var(--gray)">Prerequisito antes de configurar cualquier flow en Klaviyo o Reviews.io. Sin los emails diseñados no se puede implementar el sistema.</p>
+          <p style="margin-bottom:.75rem;color:var(--gray)">Prerequisito antes de configurar cualquier flow en Klaviyo. Cubre el copy de cada email y su construcción en la herramienta correspondiente. Total: 8 plantillas (4 tipos × ES + FR). DE, EN, PT se añaden en Fase 2.</p>
           <ol>
-            <li><strong>Email NPS</strong> — subject line, preheader, bloque de números 0-10 clickables, copy. Debe sentirse humano, no transaccional. Testear texto plano vs diseño como primera variable.</li>
-            <li><strong>Email review request (Promotores)</strong> — email #1 con link directo a Reviews.io del SKU comprado. Mencionar incentivo sin que sea el centro. Email #2 recordatorio si no hay review en 5 días.</li>
-            <li><strong>Email D+2 recordatorio NPS</strong> — texto plano, sin presión, sin mención a reviews ni cupones (ver tab Secuencia Email).</li>
-            <li>Lanzamiento en ES y FR. DE, EN, PT se añaden en Fase 2.</li>
+            <li><strong>Email de satisfacción</strong> — copy: subject line, preheader, 2 botones (😊 Contento/a · 😞 No del todo). Tono humano, no transaccional. Construir en <strong>Klaviyo → Templates</strong>. Botón 😊: enlace HTML normal (<code>&lt;a href&gt;</code>) con la URL del Dynamic Link de Reviews.io (ver F1.2 para la URL completa con variables Liquid). Botón 😞: tag <code>{% update_property_link profile_property='satisfaction_response' property_value='negative' %}</code>. Una pregunta, sin texto adicional.</li>
+            <li><strong>Email D+2 — Recordatorio</strong> — texto plano, mismos 2 botones (😊 / 😞), sin presión, sin mención a reviews ni cupones. Construir en <strong>Klaviyo → Templates</strong> (ver tab Secuencia Email para el copy completo).</li>
+            <li><strong>Email #1 — Fallback review (Satisfechos)</strong> — copy: subject, preheader, social proof (<code>{{reviews_count}}</code>), incentivo 15% flat, CTA único botón → Dynamic Link de Reviews.io. Sin imágenes de estrella — el Dynamic Link no soporta pre-selección de rating. Construir en <strong>Klaviyo → Templates</strong> (ver tab Secuencia Email para el copy completo).</li>
+            <li><strong>Email disculpa — Soporte prioritario (Insatisfechos)</strong> — copy: disculpa directa, CTA a soporte con SLA 24h. Sin review request en ningún momento. Construir en <strong>Klaviyo → Templates</strong> (ver tab Secuencia Email para el copy completo).</li>
+            <li>Todos los templates deben incluir logo, colores de marca y footer legal con enlace de baja.</li>
           </ol>
         </div></td></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f1r1')">
-          <td>Configurar NPS-first flow en Klaviyo (email D+5-7 post-entrega) <span class="expand-icon" id="icon-f1r1">▼</span></td>
-          <td>Base</td><td><strong>2</strong></td>
+          <td>Configurar satisfaction flow en Klaviyo (email D+5-7 post-entrega) <span class="expand-icon" id="icon-f1r1">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.2</td><td><strong>2</strong></td>
         </tr>
         <tr class="row-expand" id="f1r1"><td colspan="3"><div class="expand-content">
+          <p style="margin-bottom:.75rem;color:var(--gray)">Configurar la lógica del flow en Klaviyo. Los templates de email se crean en la acción 1 (F1.1).</p>
           <ol>
             <li>En Klaviyo, crear un nuevo Flow. Trigger: evento <code>Fulfilled Order</code> de Shopify.</li>
             <li>Añadir un bloque de espera: 5 días (ES), 6 días (FR), 7 días (DE/UK/PT).</li>
-            <li>Crear el email NPS con el bloque de números 0-10. Cada número usa el tag <code>{% update_property_link profile_property='NPS_Rating' property_value='X' %}</code> — reemplazar X por el número.</li>
-            <li>Redirect URL del clic: una Shopify page propia con solo "Gracias por tu respuesta".</li>
-            <li>Añadir una condición de exclusión al inicio del flow: excluir si el perfil ya tiene review del mismo producto (property <code>has_review_[product_id]</code> = true).</li>
-            <li>Después del email NPS, añadir una espera de 1 hora + split condicional por <code>NPS_Rating</code>: ≥9 → rama Promotores / 7-8 → rama Pasivos / ≤6 → rama Detractores.</li>
+            <li>Conectar el template del email de satisfacción (acción 1). Configurar los dos botones:
+              <ul style="margin-top:.4rem;margin-left:1.2rem;line-height:1.8">
+                <li><strong>😊 Contento/a</strong> — Enlace HTML normal (<code>&lt;a href="..."&gt;</code>) con la URL de Reviews.io Dynamic Link. La URL incluye variables Liquid que Klaviyo inyecta al momento del envío:<br>
+                <code style="font-size:.75rem;display:block;background:#f1f5f9;padding:.4rem .6rem;border-radius:6px;margin:.3rem 0;word-break:break-all">https://www.reviews.io/store/landing_new_review?store=[STORE_ID]&amp;user={{ first_name }}&amp;order_id={{ event.extra.order_number }}&amp;email={{ email }}&amp;products={% for item in event.extra.line_items %}{{ item.product.variant.sku | urlencode }}%3B{% endfor %}&amp;type=product&amp;incentivized=true</code>
+                <strong>Dónde obtener [STORE_ID]:</strong> Reviews.io → Collection → Dynamic Link → copiar la URL base. El loop <code>{% for item %}</code> itera todos los productos del pedido automáticamente — funciona igual para pedidos de 1 o varios productos. La review queda marcada como "verified purchase" porque Reviews.io cruza el order_id con la integración Shopify.</li>
+                <li><strong>😞 No del todo</strong> — Tag <code>update_property_link</code> de Klaviyo. Establece <code>satisfaction_response = "negative"</code> al instante del clic + redirect a una Shopify page estática ("Gracias por avisarnos"). <em>Nota: update_property_link solo soporta URLs estáticas como redirect, por eso el 😞 no puede ir a Reviews.io.</em></li>
+              </ul>
+            </li>
+            <li>Configurar el re-entry del flow en Klaviyo: en la configuración del trigger (Klaviyo → Flow → Trigger Setup), establecer que los perfiles pueden volver a entrar en el flow <strong>cada 90 días</strong>. Un cliente que ya pasó por el flow no podrá re-entrar hasta que hayan pasado 90 días desde su última entrada — y solo si genera un nuevo <code>Fulfilled Order</code>. Si compra antes de los 90 días, no re-entra. Si no compra, no re-entra nunca. Sin filtros adicionales de exclusión por review publicada al inicio del flow.</li>
+            <li>Después del email de satisfacción, implementar el split doble encadenado:
+              <ul style="margin-top:.4rem;margin-left:1.2rem;line-height:1.9">
+                <li><strong>Split 1 — ¿clicó el link de Reviews.io?</strong> Espera 15 min tras el envío + condición nativa Klaviyo: "Has clicked email where URL contains <code>reviews.io</code>".
+                  <ul style="margin-left:1.2rem;margin-top:.2rem">
+                    <li><strong>SÍ →</strong> Acción "Update Profile": <code>satisfaction_response = "positive"</code> → espera 24h → condición: "Has performed <code>ReviewsIOProductReview</code> at least once in the last 24 hours"?
+                      <ul style="margin-left:1.2rem">
+                        <li><strong>SÍ (ya hay review):</strong> fin del flow para este cliente.</li>
+                        <li><strong>NO (no completó la review):</strong> enviar Email #1 fallback (recordatorio Reviews.io).</li>
+                      </ul>
+                    </li>
+                    <li><strong>NO →</strong> continuar a Split 2.</li>
+                  </ul>
+                </li>
+                <li><strong>Split 2 — ¿satisfaction_response = "negative"?</strong> (el clic en 😞 ya lo escribió el tag al instante)
+                  <ul style="margin-left:1.2rem;margin-top:.2rem">
+                    <li><strong>SÍ →</strong> rama Insatisfechos (email soporte).</li>
+                    <li><strong>NO (sin respuesta) →</strong> D+2 recordatorio (ver card Recordatorio D+2).</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
           </ol>
         </div></td></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f1r2')">
-          <td>Crear segmentos dinámicos: Promotores / Pasivos / Detractores <span class="expand-icon" id="icon-f1r2">▼</span></td>
-          <td>Base</td><td><strong>3</strong></td>
+          <td>Crear segmentos dinámicos: Satisfechos / Insatisfechos <span class="expand-icon" id="icon-f1r2">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.3</td><td><strong>3</strong></td>
         </tr>
         <tr class="row-expand" id="f1r2"><td colspan="3"><div class="expand-content">
           <ol>
             <li>En Klaviyo → Segments → Create Segment.</li>
-            <li><strong>Promotores:</strong> condición "Profile property NPS_Rating is greater than or equal to 9".</li>
-            <li><strong>Pasivos:</strong> condición "NPS_Rating is greater than or equal to 7" AND "NPS_Rating is less than or equal to 8".</li>
-            <li><strong>Detractores:</strong> condición "NPS_Rating is less than or equal to 6".</li>
-            <li>Estos segmentos se usan tanto para análisis como para condicionar flows futuros (p.ej. excluir detractores del D+30).</li>
+            <li><strong>Satisfechos 😊:</strong> condición "Profile property <code>satisfaction_response</code> equals 'positive'".</li>
+            <li><strong>Insatisfechos 😞:</strong> condición "Profile property <code>satisfaction_response</code> equals 'negative'".</li>
+            <li>Estos segmentos se usan tanto para análisis como para condicionar flows futuros (p.ej. excluir insatisfechos del D+30).</li>
           </ol>
         </div></td></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f1r3')">
-          <td>Configurar Reviews.io Flows por mercado (ES, FR al menos) <span class="expand-icon" id="icon-f1r3">▼</span></td>
-          <td>Base</td><td><strong>4</strong></td>
+          <td>Conectar integración Reviews.io ↔ Klaviyo <span class="expand-icon" id="icon-f1r3">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.4</td><td><strong>4</strong></td>
         </tr>
         <tr class="row-expand" id="f1r3"><td colspan="3"><div class="expand-content">
+          <p style="margin-bottom:.75rem;color:var(--gray)">Prerequisito técnico para que funcione todo el sistema. <strong>Klaviyo gestiona todos los emails</strong> — Reviews.io no envía ningún email de invitación en nuestro setup. Lo que aporta Reviews.io es: (1) la URL del Dynamic Link para el botón 😊, y (2) eventos que dispara a Klaviyo cuando se publica una review.</p>
           <ol>
-            <li>En Reviews.io → Flows → Create Flow. El trigger es la invitación enviada desde Klaviyo (Reviews.io recibe el evento via integración).</li>
-            <li>Crear dos flows separados: uno para ES, otro para FR. La separación es por idioma del template, no por lógica distinta.</li>
-            <li>Flow de ES: Email #1 (D+0, solicitud) → Email #2 (D+5, social proof + incentivo). Ambos en español.</li>
-            <li>Flow de FR: mismo estructura, templates en francés.</li>
-            <li>Requiere plan Grow de Reviews.io (Flow builder no está en el plan legacy).</li>
-            <li>Conectar la integración Reviews.io ↔ Klaviyo para que el webhook de "review publicada" actualice la property <code>has_review_[product_id]</code> en el perfil de Klaviyo.</li>
+            <li>En Reviews.io → Integrations → Klaviyo → conectar con la API key de Klaviyo. Esto activa el flujo de datos bidireccional.</li>
+            <li>Una vez conectado, Reviews.io empieza a disparar eventos a Klaviyo automáticamente cuando alguien publica una review:
+              <ul style="margin-top:.4rem;margin-left:1.2rem;line-height:1.8">
+                <li><code>ReviewsIOProductReview</code> — review de producto publicada (incluye SKU). Es el evento que usamos como condición de exclusión en todos los flows.</li>
+                <li><code>ReviewsIOPositiveReview</code> — review con sentimiento positivo.</li>
+                <li><code>ReviewsIONegativeReview</code> — review con sentimiento negativo.</li>
+              </ul>
+            </li>
+            <li>Verificar que el Dynamic Link funciona: Reviews.io → Collection → Dynamic Link. Copiar la URL base y confirmar que el <code>[STORE_ID]</code> es correcto para usarlo en el template de Klaviyo (F1.1).</li>
+            <li>En Reviews.io → Settings → Pause Email Sending — activar esta opción para asegurarse de que Reviews.io no envía sus propios emails de invitación en paralelo al sistema de Klaviyo. Todos los emails los gestiona Klaviyo.</li>
           </ol>
+          <div style="background:var(--orange-light);border-left:3px solid var(--orange);padding:.6rem .9rem;margin-top:.75rem;border-radius:0 6px 6px 0;font-size:.82rem">
+            <strong>⚠️ Reviews históricas (antes de activar la integración):</strong> El evento <code>ReviewsIOProductReview</code> solo existe en Klaviyo para reviews publicadas desde que la integración está activa. Clientes con reviews anteriores al lanzamiento no tienen ese evento — la condición de Email #1 ("has NOT performed ReviewsIOProductReview in the last 24h") no los detectaría como reviewers, y recibirían el email de solicitud aunque ya tengan review publicada. Para el primer lanzamiento: exportar reviews desde Reviews.io (Reviews.io → Export Reviews — el CSV incluye SKU y email) y crear un segmento de exclusión manual en Klaviyo con esa lista, suprimiéndolos del Email #1. No afecta a la entrada al flow (gestionada por el re-entry de 90 días), solo a ese paso específico.
+          </div>
         </div></td></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f1r4')">
           <td>Configurar trigger de recompra en Shopify Flow (2ª+ orden) <span class="expand-icon" id="icon-f1r4">▼</span></td>
-          <td style="color:var(--accent)">+ Nuevo</td><td><strong>5</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.5</td><td><strong>5</strong></td>
         </tr>
         <tr class="row-expand" id="f1r4"><td colspan="3"><div class="expand-content">
           <ol>
@@ -793,67 +878,84 @@
             <li>Condición: <code>Customer orders count &gt;= 2</code> (Shopify lo expone como variable del cliente).</li>
             <li>Acción: enviar evento personalizado a Klaviyo (p.ej. <code>Recompra detectada</code>) con el product_id del pedido actual.</li>
             <li>En Klaviyo, crear un flow disparado por ese evento → espera D+3 → email único de recompra.</li>
-            <li>Añadir condición de exclusión en Klaviyo: verificar <code>has_review_[product_id]</code> antes de enviar — si ya tiene review, no enviar.</li>
+            <li>Añadir flow filter de exclusión en Klaviyo: <strong>Has NOT performed <code>ReviewsIOProductReview</code> at least once</strong> — si ya tiene review publicada, no enviar.</li>
           </ol>
         </div></td></tr>
 
-        <tr class="row-toggle" onclick="toggleRow('f1r5')">
-          <td>Activar Review Booster para SKUs con &lt;50 reviews <span class="expand-icon" id="icon-f1r5">▼</span></td>
-          <td style="color:var(--accent)">+ Nuevo</td><td><strong>6</strong></td>
+        <tr class="row-toggle" onclick="toggleRow('f1r5b')">
+          <td>Importar reviews existentes a Reviews.io <span class="expand-icon" id="icon-f1r5b">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.6</td><td><strong>6</strong></td>
         </tr>
-        <tr class="row-expand" id="f1r5"><td colspan="3"><div class="expand-content">
+        <tr class="row-expand" id="f1r5b"><td colspan="3"><div class="expand-content">
           <ol>
-            <li>En Reviews.io → Review Booster (disponible en plan Grow).</li>
-            <li>Filtrar por SKU: seleccionar los productos con menos de 50 reviews (Colágeno 675, Set Básico 477, Set Avanzado 384, Set Balance 278, Set Experto 79).</li>
-            <li>Importar o conectar la base de clientes que compraron esos SKUs y no han recibido solicitud de review previamente.</li>
-            <li>Configurar el email de la campaña masiva (puede reutilizar el template de Email #1).</li>
-            <li>Enviar en batches si el volumen es alto — para no saturar la capacidad de invitations del plan (límite 1.000/mes en Grow; confirmar con Reviews.io si se puede ampliar).</li>
-            <li>Quick win: esta acción puede generar 200-500 reviews en la primera semana sin tocar ningún flow automático.</li>
+            <li>En Reviews.io → Review Import, comprobar qué plataformas tienen importación nativa disponible (Trustpilot, Google, Yotpo, Bazaarvoice, etc.).</li>
+            <li>Identificar si Matcha & CO tiene reviews en alguna de esas plataformas exportables y cuántas.</li>
+            <li>Para las plataformas compatibles: exportar en CSV y subir vía Review Import. Reviews.io mapea los campos automáticamente.</li>
+            <li>Exportar en CSV y subir vía Review Import de Reviews.io.</li>
           </ol>
           <div style="background:var(--orange-light);border-left:3px solid var(--orange);padding:.6rem .9rem;margin-top:.75rem;border-radius:0 6px 6px 0;font-size:.82rem">
-            <strong>⚠️ Pacing:</strong> No enviar los 500K emails de golpe. Escalonar en lotes (ej. 50.000/semana) para proteger la reputación de dominio, evitar filtros de spam y gestionar el pico de respuestas con el equipo de CS.
+            <strong>⚠️ Verificar Amazon:</strong> Los Terms of Service de Amazon prohíben actualmente el uso de sus reviews fuera de la plataforma. Antes de intentar cualquier importación desde Amazon, confirmar directamente con Reviews.io si existe alguna vía oficial y legalmente válida para hacerlo.
           </div>
-        </div></td></tr>
-
-        <tr class="row-toggle" onclick="toggleRow('f1r6')">
-          <td>Configurar custom review questions (sabor, calidad, preparación) <span class="expand-icon" id="icon-f1r6">▼</span></td>
-          <td>Base</td><td><strong>7</strong></td>
-        </tr>
-        <tr class="row-expand" id="f1r6"><td colspan="3"><div class="expand-content">
-          <ol>
-            <li>En Reviews.io → Product Reviews → Custom Attributes (requiere plan Grow).</li>
-            <li>Crear atributos por producto: p.ej. "Sabor" (escala 1-5), "Calidad" (escala 1-5), "Facilidad de preparación" (escala 1-5).</li>
-            <li>Estas preguntas aparecen en el formulario de review después del rating general — son la "capa de atributos" de la escalera de micro-compromisos (10 segundos).</li>
-            <li>Se pueden configurar diferentes atributos por familia de producto si aplica (p.ej. Sets vs Matcha solo).</li>
-          </ol>
-        </div></td></tr>
-
-        <tr class="row-toggle" onclick="toggleRow('f1r7')">
-          <td>Crear plantillas email para cada touchpoint (ES + FR) <span class="expand-icon" id="icon-f1r7">▼</span></td>
-          <td>Base</td><td><strong>8</strong></td>
-        </tr>
-        <tr class="row-expand" id="f1r7"><td colspan="3"><div class="expand-content">
-          <ol>
-            <li>Templates a crear: (1) Email NPS en Klaviyo · (2) Email #1 solicitud review en Reviews.io · (3) Email #2 social proof + incentivo en Reviews.io.</li>
-            <li>Cada template en 2 idiomas: ES y FR. Total: 6 templates en esta fase.</li>
-            <li>Email NPS: en Klaviyo → Templates. Incluir números 0-10 con el tag <code>update_property_link</code>. Una pregunta, sin texto adicional.</li>
-            <li>Emails #1 y #2: en Reviews.io → Email Templates. El copy base está documentado en el tab "Secuencia Email".</li>
-            <li>Todos los templates deben incluir el logo, colores de marca y el footer legal con enlace de baja.</li>
-          </ol>
         </div></td></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f1r8')">
           <td>Activar syndication Reviews.io → Google Shopping <span class="expand-icon" id="icon-f1r8">▼</span></td>
-          <td style="color:var(--accent)">+ Nuevo</td><td><strong>9</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.7</td><td><strong>7</strong></td>
         </tr>
         <tr class="row-expand" id="f1r8"><td colspan="3"><div class="expand-content">
           <ol>
             <li>En Reviews.io → Integrations → Google Shopping / Merchant Center.</li>
-            <li>Conectar la cuenta de Google Merchant Center de Matcha & CO.</li>
+            <li>Conectar la cuenta de Google Merchant Center de Matcha &amp; CO.</li>
             <li>Reviews.io es Google Licensed Review Partner — la sincronización es nativa, sin desarrollo adicional.</li>
             <li>Una vez conectado, cada nueva review se sindica automáticamente. Las reviews existentes también se envían.</li>
             <li>Impacto: las estrellas aparecen en Google Shopping ads y en resultados orgánicos con rich snippets.</li>
           </ol>
+        </div></td></tr>
+
+        <tr class="row-toggle" onclick="toggleRow('f1r9')">
+          <td>Configurar flow de cupón post-review en Klaviyo (15% flat) <span class="expand-icon" id="icon-f1r9">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.8</td><td><strong>8</strong></td>
+        </tr>
+        <tr class="row-expand" id="f1r9"><td colspan="3"><div class="expand-content">
+          <p style="margin-bottom:.75rem;color:var(--gray)">Prerequisito: integración Reviews.io ↔ Klaviyo activa (F1.4). Este flow entrega automáticamente el cupón del 15% a cualquier cliente que publique una review. En Fase 2 se upgradea a la estructura escalonada (5%/10%/15%/20% por tipo de review).</p>
+          <ol>
+            <li>En Shopify → Discounts, crear un código de descuento único del 15% (o generar un pool de códigos únicos si se quiere tracking individual por cliente — recomendado).</li>
+            <li>En Klaviyo → Flows → Create Flow. Trigger: evento <code>ReviewsIOProductReview</code> (disparado automáticamente por Reviews.io cuando se publica una review).</li>
+            <li>Añadir acción inmediata: enviar email de agradecimiento con el cupón del 15%. Copy: "Gracias por tu review — aquí tienes tu 15% de descuento: <strong>[código]</strong>. Válido X días."</li>
+            <li>El código de descuento se inserta en el email como variable dinámica de Klaviyo (conectada al pool de Shopify).</li>
+            <li>No se necesita split condicional en Fase 1 — todos los que publican review reciben el mismo 15%.</li>
+          </ol>
+          <div style="background:var(--green-light);border-left:3px solid var(--green);padding:.6rem .9rem;margin-top:.75rem;border-radius:0 6px 6px 0;font-size:.82rem">
+            <strong>Upgrade en Fase 2:</strong> Cuando se active F2.1 (incentivos escalonados), este flow se modifica añadiendo un split condicional por tipo de review — rating solo (5%) · con texto (10%) · con foto (15%) · con video (20%). El trigger y la estructura base no cambian.
+          </div>
+        </div></td></tr>
+
+        <tr class="row-toggle" onclick="toggleRow('f1r10')">
+          <td>Activar Review Booster — campañas retroactivas por mercado <span class="expand-icon" id="icon-f1r10">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F1.9</td><td><strong>9</strong></td>
+        </tr>
+        <tr class="row-expand" id="f1r10"><td colspan="3"><div class="expand-content">
+          <div class="callout" style="margin-bottom:.85rem;padding:.65rem 1rem">
+            <strong>🎯 Target:</strong> Clientes históricos con <strong>≥2 pedidos totales</strong> que han comprado en los <strong>últimos 120 días</strong> y aún no han dejado review. La segmentación es por mercado (<code>locale</code>): <strong>5 campañas, una por país</strong> (ES, FR, DE, UK, PT). Reviews.io filtra nativamente quién ya tiene review via Flow Sequence — no se necesita <code>ReviewsIOProductReview</code> en Klaviyo para este flujo.
+          </div>
+          <ol>
+            <li>En Reviews.io → Review Booster (requiere plan Grow).</li>
+            <li>Crear 5 campañas, una por mercado: ES, FR, DE, UK, PT.</li>
+            <li>Construir el segmento de Klaviyo para cada mercado con 3 condiciones:
+              <ul style="margin:.5rem 0 .5rem 1.25rem;font-size:.85rem">
+                <li><code>Properties about someone &gt; locale</code> = <em>[es / fr / de / en-gb / pt]</em></li>
+                <li><code>What someone has done &gt; Placed Order</code> ≥ <strong>2 veces</strong> (proxy de satisfacción — repite compra)</li>
+                <li><code>What someone has done &gt; Placed Order</code> en los <strong>últimos 120 días</strong> (clientes activos)</li>
+              </ul>
+              Exportar cada segmento como CSV independiente.
+            </li>
+            <li>Subir cada CSV a la campaña correspondiente en Reviews.io → Review Booster → activar la opción <strong>"Flow Sequence"</strong>. En el flow, usar la condición nativa <strong>"Did customer leave a review?"</strong> → rama <strong>No</strong>. Reviews.io excluye automáticamente a quienes ya dejaron review sin depender de Klaviyo.</li>
+            <li>Configurar el email de la campaña — puede reutilizar el template de Email #1 (F1.1). <strong>Nota:</strong> en CSV + Flow Sequence no hay delays configurables — el email se envía al procesar el CSV.</li>
+            <li>Enviar en batches — límite 1.000 invitaciones/mes en plan Grow. Escalonar lotes para proteger la reputación de dominio y gestionar el pico de respuestas con CS.</li>
+          </ol>
+          <div style="background:var(--orange-light);border-left:3px solid var(--orange);padding:.6rem .9rem;margin-top:.75rem;border-radius:0 6px 6px 0;font-size:.82rem">
+            <strong>⚠️ Pacing:</strong> No enviar toda la base de golpe. Escalonar en lotes (por ejemplo, 200-300/semana) para proteger la reputación de dominio, evitar filtros de spam y gestionar el pico de respuestas con el equipo de CS.
+          </div>
         </div></td></tr>
 
       </table>
@@ -861,39 +963,40 @@
 
     <div class="phase-content" id="phase2">
       <table>
-        <tr><th>Acciones Clave</th><th>Tipo</th><th>Orden</th></tr>
+        <tr><th>Acciones Clave</th><th>ID</th><th>Orden</th></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f2r1')">
-          <td>Implementar incentivos escalonados (5%/10%/15%/20%) <span class="expand-icon" id="icon-f2r1">▼</span></td>
-          <td>Base</td><td><strong>1</strong></td>
+          <td>Upgrade incentivos: de 15% flat a estructura escalonada (5%/10%/15%/20%) <span class="expand-icon" id="icon-f2r1">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.1</td><td><strong>1</strong></td>
         </tr>
         <tr class="row-expand" id="f2r1"><td colspan="3"><div class="expand-content">
+          <p style="margin-bottom:.75rem;color:var(--gray)">Upgrade del flow de cupón creado en F1.8 (15% flat). Se añade lógica condicional para recompensar más a quien aporta más valor. El trigger y la estructura base no cambian — solo se añade el split.</p>
           <ol>
-            <li>En Reviews.io → configurar el envío automático de cupón post-review (disponible en Grow via webhook a Klaviyo).</li>
-            <li>El webhook "review submitted" de Reviews.io incluye el tipo de review (rating solo / con texto / con foto / con video).</li>
-            <li>En Klaviyo, crear un flow disparado por ese evento con un split condicional por tipo: rating solo → cupón 5% · con texto → 10% · con foto → 15% · con video → 20%.</li>
+            <li>En Klaviyo, editar el flow de cupón post-review creado en F1.8. El trigger sigue siendo <code>ReviewsIOProductReview</code>.</li>
+            <li>Validar que el evento <code>ReviewsIOProductReview</code> incluye propiedades sobre el tipo de review (si tiene texto, foto o video) — confirmar con Reviews.io antes de implementar el split.</li>
+            <li>Añadir split condicional por tipo de review: rating solo → cupón 5% · con texto → 10% · con foto → 15% · con video → 20%.</li>
             <li>Los cupones se generan en Shopify → Discounts y se pasan como variable dinámica al email de Klaviyo.</li>
-            <li>El email de entrega del cupón debe ser simple: "Gracias por tu review · aquí tu descuento [código] · válido X días".</li>
+            <li>El email de entrega del cupón se mantiene igual — solo cambia el % según el tier.</li>
           </ol>
         </div></td></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f2r2')">
           <td>Configurar lifecycle review D+30 condicional en Klaviyo <span class="expand-icon" id="icon-f2r2">▼</span></td>
-          <td style="color:var(--accent)">+ Nuevo</td><td><strong>2</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.2</td><td><strong>2</strong></td>
         </tr>
         <tr class="row-expand" id="f2r2"><td colspan="3"><div class="expand-content">
           <ol>
             <li>En Klaviyo, crear un nuevo Flow. Trigger: <code>Fulfilled Order</code> con espera de 30 días.</li>
-            <li>Condición de entrada: <code>has_review_[product_id]</code> = false (sin review publicada del mismo producto).</li>
-            <li>Condición de exclusión adicional: excluir si el perfil está en el segmento de Detractores (NPS ≤ 6).</li>
-            <li>Aplica tanto a Pasivos (NPS 7-8 que no respondieron al email suave) como a Promotores que no respondieron a los 2 emails de la secuencia base.</li>
+            <li>Condición de entrada (flow filter): <strong>Has NOT performed <code>ReviewsIOProductReview</code> at least once</strong> — solo entra si no tiene ninguna review publicada.</li>
+            <li>Condición de exclusión adicional: excluir si el perfil está en el segmento de Insatisfechos (<code>satisfaction_response = "negative"</code>).</li>
+            <li>Aplica a cualquier cliente que no respondió al email de satisfacción ni al recordatorio D+2, independientemente de su rama.</li>
             <li>Copy del email: ángulo de hábito formado — "¿El matcha ya es parte de tu mañana?" — en lugar de primera impresión. Ver tab Capas Complementarias → Capa B para el detalle.</li>
           </ol>
         </div></td></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f2r3')">
           <td>Añadir a briefing de creators (UpPromote + Reacher): review verificada <span class="expand-icon" id="icon-f2r3">▼</span></td>
-          <td style="color:var(--accent)">+ Nuevo</td><td><strong>3</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.3</td><td><strong>3</strong></td>
         </tr>
         <tr class="row-expand" id="f2r3"><td colspan="3"><div class="expand-content">
           <ol>
@@ -907,7 +1010,7 @@
 
         <tr class="row-toggle" onclick="toggleRow('f2r4')">
           <td>Añadir touchpoint post-purchase page (2ª compra) <span class="expand-icon" id="icon-f2r4">▼</span></td>
-          <td>Base</td><td><strong>4</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.4</td><td><strong>4</strong></td>
         </tr>
         <tr class="row-expand" id="f2r4"><td colspan="3"><div class="expand-content">
           <ol>
@@ -921,12 +1024,12 @@
 
         <tr class="row-toggle" onclick="toggleRow('f2r5')">
           <td>Diseñar e imprimir tarjeta QR para packaging <span class="expand-icon" id="icon-f2r5">▼</span></td>
-          <td>Base</td><td><strong>5</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.5</td><td><strong>5</strong></td>
         </tr>
         <tr class="row-expand" id="f2r5"><td colspan="3"><div class="expand-content">
           <ol>
             <li>Crear la landing page de email lookup: una Shopify page sencilla o formulario (Tally.so o Typeform embed gratuito) con un campo de email y un botón de enviar.</li>
-            <li>Conectar el formulario a Klaviyo: cuando se envía el email, Klaviyo identifica el perfil → dispara el flow de invite único de Reviews.io.</li>
+            <li>Conectar el formulario a Klaviyo: cuando se envía el email, Klaviyo identifica el perfil → dispara el email de invitación a review (Dynamic Link de Reviews.io).</li>
             <li>Generar el QR: ir a <a href="https://qrcode.ninja" target="_blank">qrcode.ninja</a> (gratuito) · pegar la URL de la landing page · descargar en SVG o PNG de alta resolución.</li>
             <li>Diseño de la tarjeta: Cara A — agradecimiento + QR con copy "Escanea y comparte tu experiencia → 10% descuento" · Cara B — 3 líneas de incentivo (10% texto / 15% foto / 20% video).</li>
             <li>Imprimir con el proveedor actual de packaging. Formato tarjeta de visita estándar (85×55mm) es suficiente.</li>
@@ -936,14 +1039,14 @@
 
         <tr class="row-toggle" onclick="toggleRow('f2r6')">
           <td>A/B test: timing D+5 vs D+7 vs D+10 <span class="expand-icon" id="icon-f2r6">▼</span></td>
-          <td>Base</td><td><strong>6</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.6</td><td><strong>6</strong></td>
         </tr>
         <tr class="row-expand" id="f2r6"><td colspan="3"><div class="expand-content">
           <ol>
-            <li>Objetivo: encontrar el timing óptimo entre entrega del pedido y envío del NPS. D+5 es el baseline; D+7 y D+10 son variantes.</li>
-            <li>En Klaviyo → Flow → editar el bloque de espera pre-NPS. Usar la funcionalidad de A/B test nativa de Klaviyo en flows (Split Block).</li>
+            <li>Objetivo: encontrar el timing óptimo entre entrega del pedido y envío del email de satisfacción. D+5 es el baseline; D+7 y D+10 son variantes.</li>
+            <li>En Klaviyo → Flow → editar el bloque de espera pre-email de satisfacción. Usar la funcionalidad de A/B test nativa de Klaviyo en flows (Split Block).</li>
             <li>Dividir el tráfico en 3 grupos iguales: 33% / 33% / 33%.</li>
-            <li>Métrica primaria: tasa de clic en algún número del NPS (click rate del email NPS).</li>
+            <li>Métrica primaria: tasa de clic en 😊 o 😞 (click rate del email de satisfacción).</li>
             <li>Métrica secundaria: tasa de conversión a review publicada (tracking via Reviews.io → Klaviyo webhook).</li>
             <li>Duración mínima recomendada: 4-6 semanas para tener volumen suficiente.</li>
           </ol>
@@ -951,7 +1054,7 @@
 
         <tr class="row-toggle" onclick="toggleRow('f2r7')">
           <td>A/B test: subject lines de email de review request <span class="expand-icon" id="icon-f2r7">▼</span></td>
-          <td>Base</td><td><strong>7</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.7</td><td><strong>7</strong></td>
         </tr>
         <tr class="row-expand" id="f2r7"><td colspan="3"><div class="expand-content">
           <ol>
@@ -965,31 +1068,45 @@
 
         <tr class="row-toggle" onclick="toggleRow('f2r8')">
           <td>Localizar todos los touchpoints a DE, EN, PT <span class="expand-icon" id="icon-f2r8">▼</span></td>
-          <td>Base</td><td><strong>8</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.8</td><td><strong>8</strong></td>
         </tr>
         <tr class="row-expand" id="f2r8"><td colspan="3"><div class="expand-content">
           <ol>
-            <li>Duplicar los 3 templates de email (NPS + Email #1 + Email #2) y traducir a alemán (DE), inglés (EN) y portugués (PT).</li>
+            <li>Duplicar los 4 templates de email del flujo base (Satisfacción + D+2 Recordatorio + Email #1 + Email Insatisfechos) y traducir a alemán (DE), inglés (EN) y portugués (PT). <em>Nota: Email #2 (Capa K) no se incluye en esta fase — se localiza si y cuando se active en Fase 3.</em></li>
             <li>En Klaviyo, usar la condición de mercado (se puede segmentar por país del perfil o por propiedad <code>market</code>) para enrutar a cada template.</li>
-            <li>En Reviews.io, crear un flow por idioma adicional (DE, EN, PT) — misma lógica que los flows ES y FR de Fase 1.</li>
+            <li>En Klaviyo, duplicar también los flows ya creados para ES y FR y ajustar la condición de idioma para enrutar a los templates DE, EN y PT.</li>
             <li>Nota: Reviews.io Grow no traduce automáticamente — cada template se hace manualmente. No es desarrollo, es configuración.</li>
           </ol>
         </div></td></tr>
+
+        <tr class="row-toggle" onclick="toggleRow('f2r9')">
+          <td>Configurar custom review questions (sabor, calidad, preparación) <span class="expand-icon" id="icon-f2r9">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F2.9</td><td><strong>9</strong></td>
+        </tr>
+        <tr class="row-expand" id="f2r9"><td colspan="3"><div class="expand-content">
+          <ol>
+            <li>En Reviews.io → Product Reviews → Custom Attributes (requiere plan Grow).</li>
+            <li>Crear atributos por producto: p.ej. "Sabor" (escala 1-5), "Calidad" (escala 1-5), "Facilidad de preparación" (escala 1-5).</li>
+            <li>Estas preguntas aparecen en el formulario de review después del rating general — son la "capa de atributos" de la escalera de micro-compromisos (10 segundos).</li>
+            <li>Se pueden configurar diferentes atributos por familia de producto si aplica (p.ej. Sets vs Matcha solo).</li>
+          </ol>
+        </div></td></tr>
+
 
       </table>
     </div>
 
     <div class="phase-content" id="phase3">
       <table>
-        <tr><th>Acciones Clave</th><th>Tipo</th><th>Orden</th></tr>
+        <tr><th>Acciones Clave</th><th>ID</th><th>Orden</th></tr>
 
         <tr class="row-toggle" onclick="toggleRow('f3r1')">
-          <td>Activar flujo de recuperación de detractores <span class="expand-icon" id="icon-f3r1">▼</span></td>
-          <td>Base</td><td><strong>1</strong></td>
+          <td>Activar flujo de recuperación de insatisfechos <span class="expand-icon" id="icon-f3r1">▼</span></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F3.1</td><td><strong>1</strong></td>
         </tr>
         <tr class="row-expand" id="f3r1"><td colspan="3"><div class="expand-content">
           <ol>
-            <li>En Klaviyo, en la rama de Detractores (NPS 0-6) del flow principal, crear la secuencia de recuperación.</li>
+            <li>En Klaviyo, en la rama de Insatisfechos (<code>satisfaction_response = "negative"</code>) del flow principal, crear la secuencia de recuperación.</li>
             <li>Paso 1 — email inmediato: disculpa + oferta de soporte ("Lamentamos que no hayas tenido la experiencia que esperabas. Nuestro equipo está disponible para ayudarte").</li>
             <li>Paso 2 — alerta interna: notificación al equipo de soporte (via email o Slack) con los datos del cliente para seguimiento proactivo.</li>
             <li>Paso 3 — wait 7 días → condición: ¿el cliente respondió / fue resuelto? Si sí → email invitando a dejar review D+7 del cierre. Si no → cerrar el flow sin pedir review.</li>
@@ -999,7 +1116,7 @@
 
         <tr class="row-toggle" onclick="toggleRow('f3r2')">
           <td>Implementar QR en packaging (producción) <span class="expand-icon" id="icon-f3r2">▼</span></td>
-          <td>Base</td><td><strong>2</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F3.2</td><td><strong>2</strong></td>
         </tr>
         <tr class="row-expand" id="f3r2"><td colspan="3"><div class="expand-content">
           <ol>
@@ -1013,11 +1130,11 @@
 
         <tr class="row-toggle" onclick="toggleRow('f3r3')">
           <td>Crear flujo de UGC automático (foto/video post-review 4-5⭐) <span class="expand-icon" id="icon-f3r3">▼</span></td>
-          <td>Base</td><td><strong>3</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F3.3</td><td><strong>3</strong></td>
         </tr>
         <tr class="row-expand" id="f3r3"><td colspan="3"><div class="expand-content">
           <ol>
-            <li>En Klaviyo, crear un flow disparado por el webhook "review submitted" de Reviews.io.</li>
+            <li>En Klaviyo, crear un flow disparado por el evento <code>ReviewsIOProductReview</code> (que Reviews.io envía automáticamente a Klaviyo cuando se publica una review con foto/video).</li>
             <li>Condición: review con rating 4-5 estrellas AND contiene foto o video.</li>
             <li>Acción: email automático al cliente agradeciendo la review + solicitando permiso de uso del UGC en redes sociales y ads ("¿Nos das permiso para compartir tu foto/video en nuestras redes?").</li>
             <li>Si el cliente responde sí → se etiqueta el perfil en Klaviyo y la review se marca en Reviews.io para uso en marketing.</li>
@@ -1027,11 +1144,11 @@
 
         <tr class="row-toggle" onclick="toggleRow('f3r4')">
           <td>Dashboard de métricas de review collection (weekly review) <span class="expand-icon" id="icon-f3r4">▼</span></td>
-          <td>Base</td><td><strong>4</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F3.4</td><td><strong>4</strong></td>
         </tr>
         <tr class="row-expand" id="f3r4"><td colspan="3"><div class="expand-content">
           <ol>
-            <li>Métricas a trackear semanalmente: reviews/semana por SKU · open rate del email NPS · tasa de conversión NPS → review · % reviews con foto/video · reviews por canal (email, QR, recompra, creator).</li>
+            <li>Métricas a trackear semanalmente: reviews/semana por SKU · open rate del email de satisfacción · tasa de conversión satisfacción → review · % reviews con foto/video · reviews por canal (email, QR, recompra, creator).</li>
             <li>Fuente de datos: Reviews.io dashboard (reviews por SKU, por fecha) + Klaviyo (métricas de email) + Google Analytics (scans de QR via UTM).</li>
             <li>Formato: hoja de cálculo sencilla con las métricas clave, actualizada manualmente cada lunes. No requiere integración técnica en esta fase.</li>
             <li>Alternativamente: exportar datos de Reviews.io y Klaviyo a un Google Sheet compartido. Ambas plataformas permiten exportación CSV.</li>
@@ -1040,7 +1157,7 @@
 
         <tr class="row-toggle" onclick="toggleRow('f3r5')">
           <td>Evaluar incentivo aumentado para SKUs &lt;50 reviews (15% vs 10%) <span class="expand-icon" id="icon-f3r5">▼</span></td>
-          <td style="color:var(--accent)">+ Nuevo</td><td><strong>5</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F3.5</td><td><strong>5</strong></td>
         </tr>
         <tr class="row-expand" id="f3r5"><td colspan="3"><div class="expand-content">
           <ol>
@@ -1053,7 +1170,7 @@
 
         <tr class="row-toggle" onclick="toggleRow('f3r6')">
           <td>Conectar puntos de app como incentivo secundario (si adopción consolidada) <span class="expand-icon" id="icon-f3r6">▼</span></td>
-          <td style="color:var(--accent)">+ Nuevo</td><td><strong>6</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F3.6</td><td><strong>6</strong></td>
         </tr>
         <tr class="row-expand" id="f3r6"><td colspan="3"><div class="expand-content">
           <ol>
@@ -1067,7 +1184,7 @@
 
         <tr class="row-toggle" onclick="toggleRow('f3r7')">
           <td>Evaluar Trustpilot como canal complementario <span class="expand-icon" id="icon-f3r7">▼</span></td>
-          <td>Base</td><td><strong>7</strong></td>
+          <td style="font-weight:700;font-family:monospace;color:var(--accent);font-size:.82rem">F3.7</td><td><strong>7</strong></td>
         </tr>
         <tr class="row-expand" id="f3r7"><td colspan="3"><div class="expand-content">
           <ol>
@@ -1088,12 +1205,12 @@
       <div style="color:var(--orange);font-weight:700;padding-top:.1rem">1.</div>
       <div><strong>Confirmar límite real de invitaciones en Reviews.io Grow</strong> — el plan estándar incluye 1.000 email invitations/mes. Con el volumen de pedidos actual esto puede ser un cuello de botella desde el mes 1. Antes del upgrade, preguntar a Reviews.io el coste exacto de ampliar ese límite. La respuesta puede cambiar la decisión entre Grow (€150/mes) y Plus (€425/mes).</div>
       <div style="color:var(--orange);font-weight:700;padding-top:.1rem">2.</div>
-      <div><strong>Definir cómo gestionar pedidos multi-producto</strong> — si un cliente compra Matcha Premium + Colágeno en el mismo pedido, ¿recibe un NPS por pedido o por SKU? ¿Una review request o dos? Esta decisión afecta directamente la configuración del flow en Klaviyo y no puede dejarse para después de implementar.</div>
+      <div><strong>Definir cómo gestionar pedidos multi-producto</strong> — si un cliente compra Matcha Premium + Colágeno en el mismo pedido, ¿recibe un email de satisfacción por pedido o por SKU? ¿Una review request o dos? Esta decisión afecta directamente la configuración del flow en Klaviyo y no puede dejarse para después de implementar.</div>
     </div>
   </div>
 
   <div class="callout" style="margin-top:1rem">
-    <strong>⚡ Quick win inmediato:</strong> Activar Review Booster de Reviews.io para enviar invitaciones masivas a clientes anteriores que nunca recibieron solicitud de review. Puede generar 200-500 reviews en la primera semana sin tocar ningún flow.
+    <strong>⚡ Quick win inmediato (F1.9):</strong> Activar Review Booster de Reviews.io para enviar invitaciones a clientes históricos que nunca recibieron solicitud de review. El volumen depende del límite del plan (1.000 invitaciones/mes en Grow — confirmar ampliación antes de lanzar). Con el límite base y una tasa de conversión del 8%, estima ~80 reviews adicionales en el primer mes sin tocar ningún flow.
   </div>
 </div>
 
@@ -1112,7 +1229,7 @@
       <tr><td><strong>Tasa pedido→review</strong></td><td style="color:var(--orange)">~0.01%</td><td>3-5%</td><td style="color:var(--green);font-weight:700">5-8%</td></tr>
       <tr><td><strong>% reviews con foto/video</strong></td><td style="color:var(--orange)">Desconocido</td><td>&gt;15%</td><td style="color:var(--green);font-weight:700">&gt;25%</td></tr>
       <tr><td><strong>Rating medio</strong></td><td>4.88 (Matcha Premium — sin media global)</td><td>&gt;4.5</td><td style="color:var(--green);font-weight:700">&gt;4.5</td></tr>
-      <tr><td><strong>Tasa respuesta NPS</strong></td><td style="color:var(--orange)">N/A</td><td>&gt;20%</td><td style="color:var(--green);font-weight:700">&gt;30%</td></tr>
+      <tr><td><strong>Tasa respuesta satisfacción</strong></td><td style="color:var(--orange)">N/A</td><td>&gt;20%</td><td style="color:var(--green);font-weight:700">&gt;30%</td></tr>
     </table>
   </div>
 
@@ -1123,7 +1240,7 @@
       <tr><td>Email open rate</td><td>Eficacia del subject line</td><td>&gt;35%</td></tr>
       <tr><td>Email → review conversion</td><td>Fricción del flujo</td><td>&gt;8%</td></tr>
       <tr><td>QR scan rate</td><td>Adopción touchpoint offline</td><td>Tracking activo</td></tr>
-      <tr><td>Detractor recovery rate</td><td>Eficacia flujo soporte</td><td>&gt;40% convertidos</td></tr>
+      <tr><td>Insatisfecho recovery rate</td><td>Eficacia flujo soporte</td><td>&gt;40% convertidos</td></tr>
       <tr><td>Review length medio</td><td>Calidad del contenido</td><td>&gt;25 palabras</td></tr>
     </table>
   </div>
@@ -1167,7 +1284,7 @@
   <!-- CAPA A: RECOMPRA -->
   <div class="card">
     <h2>⚡ A — Trigger de Recompra (2ª / 3ª orden)</h2>
-    <p style="color:var(--gray);margin-bottom:1rem">La recompra <em>es</em> el filtro de satisfacción. No necesita NPS previo. El cliente que vuelve a pedir ya demostró que el producto funciona para él — su review es la más creíble para nuevos compradores.</p>
+    <p style="color:var(--gray);margin-bottom:1rem">La recompra <em>es</em> el filtro de satisfacción. No necesita email de satisfacción previo. El cliente que vuelve a pedir ya demostró que el producto funciona para él — su review es la más creíble para nuevos compradores.</p>
 
     <table>
       <tr><th>Elemento</th><th>Detalle</th></tr>
@@ -1175,12 +1292,12 @@
       <tr><td><strong>Canal</strong></td><td>1 email único (no secuencia completa — ya es cliente conocido)</td></tr>
       <tr><td><strong>Timing</strong></td><td>D+3 post-entrega (menos delay — ya saben qué esperar)</td></tr>
       <tr><td><strong>Copy</strong></td><td>"Volviste a pedir. Claramente funciona. ¿Le cuentas a otros por qué?"</td></tr>
-      <tr><td><strong>Incentivo</strong></td><td>Mismo esquema escalonado: 10% texto, 15% foto, 20% video</td></tr>
+      <tr><td><strong>Incentivo</strong></td><td>15% flat en Fase 1 · esquema escalonado (10% texto / 15% foto / 20% video) una vez activo F2.1</td></tr>
       <tr><td><strong>Exclusión</strong></td><td>No enviar si ya tiene review publicada del mismo producto</td></tr>
     </table>
 
     <div style="margin-top:1rem; padding:.75rem 1rem; background:var(--green-light); border-radius:8px; font-size:.85rem">
-      <strong>Implementación técnica:</strong> Shopify Flow detecta "número de pedidos del cliente ≥ 2" → envía evento a Klaviyo → Klaviyo verifica property <code>has_review_[producto_id]</code> (actualizada por webhook de Reviews.io) → si no tiene review: envía invite directo a D+3 post-entrega.
+      <strong>Implementación técnica:</strong> Shopify Flow detecta "número de pedidos del cliente ≥ 2" → envía evento a Klaviyo → Klaviyo verifica el evento <code>ReviewsIOProductReview</code> (disparado por Reviews.io cuando se publica una review) → si no tiene review: envía invite directo a D+3 post-entrega.
     </div>
     <div class="callout warn" style="margin-top:.75rem;font-size:.82rem">
       <strong>Nota:</strong> Shopify Flow no tiene acceso directo a datos de Reviews.io. La verificación de "ya tiene review" debe hacerse en Klaviyo usando una custom property del perfil actualizada por webhook de Reviews.io cada vez que se publica una review.
@@ -1194,11 +1311,11 @@
 
     <table>
       <tr><th>Elemento</th><th>Detalle</th></tr>
-      <tr><td><strong>Condición</strong></td><td>D+30 post-entrega AND sin review publicada — aplica tanto a Pasivos (NPS 7-8 sin respuesta al email suave en 7 días) como a cualquier Promotor que no respondió a la secuencia de 2 emails</td></tr>
+      <tr><td><strong>Condición</strong></td><td>D+30 post-entrega AND sin review publicada — aplica a cualquier cliente que no respondió al email de satisfacción ni al recordatorio D+2, o que respondió 😊 pero no completó la review tras recibir Email #1</td></tr>
       <tr><td><strong>Canal</strong></td><td>1 email único</td></tr>
       <tr><td><strong>Ángulo de copy</strong></td><td>"¿El matcha ya es parte de tu mañana?" — hábito formado, no primera impresión</td></tr>
       <tr><td><strong>Incentivo</strong></td><td>Mismo esquema. Framing: "Aún puedes compartir tu experiencia"</td></tr>
-      <tr><td><strong>Exclusiones</strong></td><td>No enviar a detractores (NPS 0-6) ya identificados. No enviar si ya hay review.</td></tr>
+      <tr><td><strong>Exclusiones</strong></td><td>No enviar a insatisfechos (<code>satisfaction_response = "negative"</code>) ya identificados. No enviar si ya hay review.</td></tr>
     </table>
 
     <div class="callout" style="margin-top:1rem">
@@ -1256,7 +1373,7 @@
       <div style="background:var(--orange-light);padding:1rem;border-radius:var(--radius);text-align:center">
         <div style="font-size:1.4rem;font-weight:800;color:var(--orange)">&lt;50</div>
         <div style="font-size:.8rem;font-weight:600;margin:.25rem 0">Reviews → Review Booster</div>
-        <div style="font-size:.75rem;color:var(--gray)">Envío retroactivo a compradores históricos del SKU que nunca recibieron solicitud</div>
+        <div style="font-size:.75rem;color:var(--gray)">Campañas retroactivas por mercado (F1.9) — beneficia especialmente a SKUs infrarrepresentados</div>
       </div>
       <div style="background:var(--green-light);padding:1rem;border-radius:var(--radius);text-align:center">
         <div style="font-size:1.4rem;font-weight:800;color:var(--green)">15%</div>
@@ -1272,6 +1389,25 @@
     <p style="margin-bottom:1rem;font-size:.9rem;color:var(--gray)">Configuración global en Reviews.io (no por SKU). Cada review nueva se sindica automáticamente a Google Merchant Center, apareciendo en Shopping ads y resultados orgánicos con estrellitas.</p>
     <div style="background:var(--blue-light);padding:1rem;border-radius:var(--radius);font-size:.85rem">
       <strong>Activación:</strong> Reviews.io → Integrations → Google Merchant Center → conectar cuenta. Sin desarrollo adicional, sin coste extra. Impacto directo en CTR de Shopping ads y conversión desde búsqueda orgánica con rich snippets.
+    </div>
+  </div>
+
+  <!-- EMAIL #2: SEGUIMIENTO D+5 -->
+  <div class="card" style="border-top: 3px solid var(--gray); opacity:.9">
+    <h2>📧 K — Email #2: Seguimiento D+5 <span style="font-size:.8rem; font-weight:400; color:var(--gray); margin-left:.5rem">— Fase 3 · optimización del flujo</span></h2>
+    <p style="color:var(--gray);margin-bottom:1rem;font-size:.9rem">Segunda oportunidad para satisfechos que no respondieron al Email #1. A D+5 desde el clic en 😊, el cliente tiene más contexto y más tiempo de experiencia con el producto. Se activa cuando el sistema base esté rodando y se quiera aumentar la conversión de la rama satisfechos.</p>
+
+    <table>
+      <tr><th>Elemento</th><th>Detalle</th></tr>
+      <tr><td><strong>Trigger</strong></td><td>D+5 tras clic en 😊 en el email de satisfacción</td></tr>
+      <tr><td><strong>Condición</strong></td><td>"Has NOT performed <code>ReviewsIOProductReview</code> in the last 6 days" — cubre toda la ventana desde el clic en 😊</td></tr>
+      <tr><td><strong>Ángulo de copy</strong></td><td>Urgencia suave + incentivo reforzado. "Aún puedes compartir tu experiencia — y llevarte un 15% si añades una foto."</td></tr>
+      <tr><td><strong>CTA</strong></td><td>Botón único → Dynamic Link de Reviews.io (igual que Email #1)</td></tr>
+      <tr><td><strong>Herramienta</strong></td><td>Klaviyo — mismo flow, nuevo bloque de espera + condicional tras Email #1</td></tr>
+    </table>
+
+    <div class="callout" style="margin-top:1rem">
+      <strong>Cuándo activarlo:</strong> Cuando el sistema base lleve al menos 4-6 semanas funcionando y se pueda medir la tasa de conversión de Email #1. Si la conversión de Email #1 ya es alta, el Email #2 aporta poco. Si hay margen, añadirlo como bloque adicional en el flow de Klaviyo sin tocar nada más.
     </div>
   </div>
 
@@ -1311,8 +1447,8 @@
 
     <table>
       <tr><th>Touchpoint</th><th>Cuándo</th><th>Formato</th><th>Req.</th></tr>
-      <tr><td><strong>NPS in-app</strong></td><td>D+7 post-entrega (alternativa al email NPS)</td><td>Modal flotante: "¿Nos recomendarías? (0-10)"</td><td>Push permissions + SDK NPS</td></tr>
-      <tr><td><strong>Review prompt in-app</strong></td><td>Tras NPS 9-10 in-app</td><td>Deep link a Reviews.io form del SKU comprado</td><td>Deep linking configurado</td></tr>
+      <tr><td><strong>Filtro satisfacción in-app</strong></td><td>D+7 post-entrega (alternativa al email de satisfacción)</td><td>Modal flotante: "¿Estás contento con tu pedido?" (😊 / 😞)</td><td>Push permissions + SDK</td></tr>
+      <tr><td><strong>Review prompt in-app</strong></td><td>Tras respuesta 😊 in-app</td><td>Deep link a Reviews.io form del SKU comprado</td><td>Deep linking configurado</td></tr>
       <tr><td><strong>Push notification</strong></td><td>D+2 si no abrió email #1</td><td>"[Nombre], ¿qué te parece tu matcha? (60 seg)"</td><td>Push permissions activas</td></tr>
       <tr><td><strong>Puntos por review</strong></td><td>Tras publicar review verificada</td><td>+X puntos de loyalty automáticos</td><td>Webhook Reviews.io → app backend</td></tr>
     </table>
@@ -1337,7 +1473,7 @@
 
     <table>
       <tr><th>Touchpoint</th><th>Cuándo</th><th>Formato</th><th>Req.</th></tr>
-      <tr><td><strong>Review request WhatsApp</strong></td><td>D+5-7 post-entrega (misma ventana que email NPS)</td><td>Mensaje con nombre del producto + link directo a Reviews.io del SKU</td><td>Consent WhatsApp en checkout + app activa</td></tr>
+      <tr><td><strong>Review request WhatsApp</strong></td><td>D+5-7 post-entrega (misma ventana que email de satisfacción)</td><td>Mensaje con nombre del producto + link directo a Reviews.io del SKU</td><td>Consent WhatsApp en checkout + app activa</td></tr>
       <tr><td><strong>Recordatorio D+2</strong></td><td>Si no abrió el primer mensaje</td><td>Mensaje corto de texto plano, sin presión</td><td>Mismo consent</td></tr>
       <tr><td><strong>Confirmación de incentivo</strong></td><td>Tras publicar review verificada</td><td>"Gracias [nombre], tu cupón es: XXXXX"</td><td>Webhook Reviews.io → app → WhatsApp</td></tr>
     </table>
@@ -1353,7 +1489,7 @@
       </div>
     </div>
     <div class="callout" style="margin-top:1rem">
-      <strong>Relación con el flujo principal:</strong> WhatsApp no reemplaza el email — es un canal paralelo para los clientes que dieron consent. El trigger y la lógica de segmentación (NPS → review) son los mismos. A futuro, se puede integrar en el mismo flow de Klaviyo mediante webhook, o gestionarlo directamente desde la app Shopify con su propia lógica condicional.
+      <strong>Relación con el flujo principal:</strong> WhatsApp no reemplaza el email — es un canal paralelo para los clientes que dieron consent. El trigger y la lógica de segmentación (satisfacción → review) son los mismos. A futuro, se puede integrar en el mismo flow de Klaviyo mediante webhook, o gestionarlo directamente desde la app Shopify con su propia lógica condicional.
     </div>
 
     <!-- ── CAPA J ── -->
@@ -1409,7 +1545,7 @@
         <th>Qué significa en la práctica</th>
       </tr>
       <tr>
-        <td><strong>Secuencias condicionales</strong><br><span style="font-size:.75rem; color:var(--gray)">Si NPS 9-10 → review / si 4-5⭐ → pide foto</span></td>
+        <td><strong>Secuencias condicionales</strong><br><span style="font-size:.75rem; color:var(--gray)">Si 😊 → review / si 4-5⭐ → pide foto</span></td>
         <td style="text-align:center; color:var(--green); font-weight:700">✅</td>
         <td style="text-align:center; color:var(--orange); font-weight:700">❌</td>
         <td style="font-size:.85rem">Judge.me solo envía el email inicial + recordatorio si lo abrió. Sin lógica condicional. <strong>El sistema entero se rompe sin esto.</strong></td>
@@ -1430,7 +1566,7 @@
         <td><strong>NPS / Surveys</strong><br><span style="font-size:.75rem; color:var(--gray)">Encuestas integradas</span></td>
         <td style="text-align:center; color:var(--green); font-weight:700">✅ 100/mes</td>
         <td style="text-align:center; color:var(--orange); font-weight:700">❌</td>
-        <td style="font-size:.85rem">En nuestro sistema el NPS lo gestiona Klaviyo — así que esta diferencia es <strong>irrelevante</strong> para la implementación actual.</td>
+        <td style="font-size:.85rem">En nuestro sistema el filtro de satisfacción lo gestiona Klaviyo — así que esta diferencia es <strong>irrelevante</strong> para la implementación actual.</td>
       </tr>
       <tr>
         <td><strong>Custom attributes / preguntas por producto</strong><br><span style="font-size:.75rem; color:var(--gray)">Preguntas específicas: sabor, calidad, preparación...</span></td>
@@ -1496,7 +1632,7 @@
       <div style="background:var(--orange-light); border: 2px solid var(--orange); border-radius:var(--radius); padding:1.25rem">
         <div style="font-size:1.4rem; margin-bottom:.5rem">🔀</div>
         <div style="font-weight:700; color:var(--orange); margin-bottom:.4rem">Sin lógica condicional</div>
-        <div style="font-size:.83rem; color:var(--dark)">El sistema entero se basa en condiciones: si NPS 9-10 → secuencia review, si 4-5⭐ → pide foto, si no abre el email → SMS. Judge.me no tiene esto — sus recordatorios solo se envían si el cliente abrió el email inicial.</div>
+        <div style="font-size:.83rem; color:var(--dark)">El sistema entero se basa en condiciones: si 😊 → secuencia review, si 4-5⭐ → pide foto, si no abre el email → SMS. Judge.me no tiene esto — sus recordatorios solo se envían si el cliente abrió el email inicial.</div>
       </div>
       <div style="background:var(--orange-light); border: 2px solid var(--orange); border-radius:var(--radius); padding:1.25rem">
         <div style="font-size:1.4rem; margin-bottom:.5rem">📱</div>
